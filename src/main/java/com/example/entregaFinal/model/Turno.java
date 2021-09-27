@@ -34,6 +34,7 @@ public class Turno {
             referencedColumnName = "pacienteId"
     )
     private Paciente turnoPaciente;
+
     @ManyToOne(
             cascade = CascadeType.ALL
     )
