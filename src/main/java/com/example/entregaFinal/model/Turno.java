@@ -28,7 +28,9 @@ public class Turno {
     private Long turnoId;
     private LocalDate turnoFecha;
     private LocalTime turnoHora;
-    @ManyToOne()
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name="paciente_id",
             referencedColumnName = "pacienteId"
@@ -36,6 +38,7 @@ public class Turno {
     private Paciente turnoPaciente;
 
     @ManyToOne(
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
     @JoinColumn(

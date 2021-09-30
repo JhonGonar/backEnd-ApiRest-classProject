@@ -5,6 +5,8 @@ import com.example.entregaFinal.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TurnoServiceImpl implements TurnoService {
 
@@ -13,5 +15,10 @@ public class TurnoServiceImpl implements TurnoService {
     @Override
     public Turno saveTurno(Turno turno) {
         return turnoRepository.save(turno);
+    }
+
+    @Override
+    public List<Turno> fetchTurnoList() {
+        return turnoRepository.findAll();
     }
 }
