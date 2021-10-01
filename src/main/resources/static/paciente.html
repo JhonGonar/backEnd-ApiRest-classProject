@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button id="getPacientes">Listar pacientes</button>
+        <div id="output"></div>
+    </div>
+    <script>
+        document.getElementById('getPacientes').addEventListener('click', getPacientes)
+        function getPacientes(){
+            fetch('http://localhost:8080/pacientes/')
+            .then((response) => response.json())
+            .then((data) => {
+                let output = '<h2>Pacientes</h2>';
+                data.forEach(function(paciente) {
+                    output += `
+                    <div>
+                        <h3>${paciente.pacienteNombre} ${paciente.pacienteApellido}</h3>  
+                        <p>Domicilio: ${paciente.pacienteDomicilio}</p> 
+                        <p>Dni: ${paciente.pacienteDni}</p> 
+                        <p>Fecha de Alta: ${paciente.pacienteFechaAlta}</p> 
+                        <p>Id paciente: ${paciente.pacienteId}</p> 
+                    </div>
+                    `;
+                })
+                document.getElementById('output').innerHTML = output;
+            })
+        }
+    </script>
+</body>
+</html>

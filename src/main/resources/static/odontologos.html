@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button id="getOdontologos">Listar odontologos</button>
+        
+        <div id="output"></div>
+        <form action="" id="postOdontologo">
+            <div>
+                <input type="text" id="apellido" placeholder="Apellido">
+            </div>
+            <div>
+                <input type="text" id="nombre" placeholder="Nombre">
+            </div>
+            <div>
+                <input type="text" id="matricula" placeholder="Matricula">
+            </div>
+            <button type="submit" id="btn-postOdontologos">Registrar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('getOdontologos').addEventListener('click', getOdontologos)
+
+        function getOdontologos() {
+            fetch('http://localhost:8080/odontologos/')
+            .then((response) => response.json())
+            .then((data) => {
+                let output = '<h2>Odontologos</h2>';
+                data.forEach(function(odontologo) {
+                    output += `
+                    <div>
+                        <h3>${odontologo.odontologoNombre} ${odontologo.odontologoApellido}</h3>  
+                        <p>Matricula: ${odontologo.odontologoMatricula}</p> 
+                        <p>Id Odontologo: ${odontologo.odontologoId}</p> 
+                    </div>
+                    `;
+                })
+                document.getElementById('output').innerHTML = output;
+            })
+        }
+
+        document.getElementById('btn-postOdontologos').addEventListener('click', postOdontologo)
+        function postOdontologo(e){
+            e.preventDefault();
+            let apellido = document.getElementById('apellido').value;
+            let nombre = document.getElementById('nombre').value;
+            let matricula = document.getElementById('matricula').value;
+            fetch('http://localhost:8080/odontologos/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({odontologoApellido:apellido, odontologoNombre:nombre, odontologoMatricula:matricula})
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+        }
+    </script>
+</body>
+</html>
