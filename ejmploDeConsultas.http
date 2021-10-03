@@ -1,0 +1,20 @@
+POST http://localhost:8080/odontologos
+Content-Type: application/json
+
+{
+  "odontologoApellido":"Suarez",
+  "odontologoNombre":"Martin",
+  "odontologoMatricula":"345"
+}
+###
+POST http://localhost:8080/pacientes
+Content-Type: application/json
+
+{
+  "pacienteNombre":"Maria",
+  "pacienteApellido":"Velez",
+  "pacienteDomicilio":"Avenida X",
+  "pacienteDni": "0968",
+  "pacienteFechaAlta": "2021-09-25"
+}
+### TODAS LAS DEMAS OPCIONES DE CRUD AON ACCESIBLES CON HTTP REQUEST (PUT,DELETE, FINDBY..). Solo Listar desde Front
