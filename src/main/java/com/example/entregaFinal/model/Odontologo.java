@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,7 @@ public class Odontologo {
     private String odontologoApellido;
     private String odontologoNombre;
     @NotBlank(message = "el campo de matricula es obligatorio")
+    @NotNull
     @Column(nullable = false)
     private String odontologoMatricula;
 /*    @OneToMany(
